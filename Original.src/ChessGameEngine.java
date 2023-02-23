@@ -16,7 +16,7 @@ public class ChessGameEngine{
     private ChessGamePiece currentPiece;
     private boolean        firstClick;
     private int            currentPlayer;
-    private ChessGameBoard board;
+    private final ChessGameBoard board;
     private King           king1;
     private King           king2;
     // ----------------------------------------------------------
@@ -49,7 +49,7 @@ public class ChessGameEngine{
         ( (ChessPanel)board.getParent() ).getGraveyard( 1 ).clearGraveyard();
         ( (ChessPanel)board.getParent() ).getGraveyard( 2 ).clearGraveyard();
         ( (ChessPanel)board.getParent() ).getGameBoard().initializeBoard();
-        ( (ChessPanel)board.getParent() ).revalidate();
+        board.getParent().revalidate();
         this.king1 = (King)board.getCell( 7, 3 ).getPieceOnSquare();
         this.king2 = (King)board.getCell( 0, 3 ).getPieceOnSquare();
         ( (ChessPanel)board.getParent() ).getGameLog().clearLog();
@@ -92,14 +92,14 @@ public class ChessGameEngine{
         }
         else
         {
-            return false;
+            return true;
         }
         for ( ChessGamePiece currPiece : pieces ){
             if ( currPiece.hasLegalMoves( board ) ){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
     /**
      * Checks if the last-clicked piece is a valid piece (i.e. if it is
@@ -113,18 +113,12 @@ public class ChessGameEngine{
         }
         if ( currentPlayer == 2 ) // black player
         {
-            if ( currentPiece.getColorOfPiece() == ChessGamePiece.BLACK ){
-                return true;
-            }
-            return false;
+            return currentPiece.getColorOfPiece() == ChessGamePiece.BLACK;
         }
         else
         // white player
         {
-            if ( currentPiece.getColorOfPiece() == ChessGamePiece.WHITE ){
-                return true;
-            }
-            return false;
+            return currentPiece.getColorOfPiece() == ChessGamePiece.WHITE;
         }
     }
     /**
@@ -140,15 +134,14 @@ public class ChessGameEngine{
             if ( currentPlayer == 1 ){
                 return king1.isChecked( board );
             }
-            return king2.isChecked( board );
         }
         else
         {
             if ( currentPlayer == 2 ){
                 return king1.isChecked( board );
             }
-            return king2.isChecked( board );
         }
+        return king2.isChecked( board );
     }
     /**
      * Asks the user if they want to play again - if they don't, the game exits.
@@ -213,18 +206,18 @@ public class ChessGameEngine{
      *         still valid game.
      */
     public int determineGameLost(){
-        if ( king1.isChecked( board ) && !playerHasLegalMoves( 1 ) ) // player 1
+        if ( king1.isChecked( board ) && playerHasLegalMoves(1)) // player 1
         // loss
         {
             return 1;
         }
-        if ( king2.isChecked( board ) && !playerHasLegalMoves( 2 ) ) // player 2
+        if ( king2.isChecked( board ) && playerHasLegalMoves(2)) // player 2
         // loss
         {
             return 2;
         }
-        if ( ( !king1.isChecked( board ) && !playerHasLegalMoves( 1 ) )
-            || ( !king2.isChecked( board ) && !playerHasLegalMoves( 2 ) )
+        if ( ( !king1.isChecked( board ) && playerHasLegalMoves(1))
+            || ( !king2.isChecked( board ) && playerHasLegalMoves(2))
             || ( board.getAllWhitePieces().size() == 1 &&
                 board.getAllBlackPieces().size() == 1 ) ) // stalemate
         {
@@ -300,13 +293,9 @@ public class ChessGameEngine{
                         "Invalid move",
                         JOptionPane.ERROR_MESSAGE );
                 }
-                firstClick = true;
             }
-            else
             // user is just unselecting the current piece
-            {
-                firstClick = true;
-            }
+            firstClick = true;
         }
     }
 }

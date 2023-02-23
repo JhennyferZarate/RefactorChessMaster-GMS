@@ -1,5 +1,6 @@
 import java.awt.Component;
 import java.awt.event.*;
+import java.util.Objects;
 import javax.swing.*;
 // -------------------------------------------------------------------------
 /**
@@ -24,10 +25,10 @@ public class ChessMenuBar
         for ( int i = 0; i < menuCategories.length; i++ ){
             JMenu currMenu = new JMenu( menuCategories[i] );
             String[] currMenuItemList = menuItemLists[i].split( "," );
-            for ( int j = 0; j < currMenuItemList.length; j++ ){
-                JMenuItem currItem = new JMenuItem( currMenuItemList[j] );
-                currItem.addActionListener( new MenuListener() );
-                currMenu.add( currItem );
+            for (String s : currMenuItemList) {
+                JMenuItem currItem = new JMenuItem(s);
+                currItem.addActionListener(new MenuListener());
+                currMenu.add(currItem);
             }
             this.add( currMenu );
         }
@@ -52,21 +53,12 @@ public class ChessMenuBar
         @Override
         public void actionPerformed( ActionEvent event ){
             String buttonName = ( (JMenuItem)event.getSource() ).getText();
-            if ( buttonName.equals( "About" ) ){
-                aboutHandler();
-            }
-            else if ( buttonName.equals( "New game/restart" ) ){
-                restartHandler();
-            }
-            else if ( buttonName.equals( "Toggle game log" ) ){
-                toggleGameLogHandler();
-            }
-            else if ( buttonName.equals( "Exit" ) ){
-                exitHandler();
-            }
-            else
-            {
-                toggleGraveyardHandler();
+            switch (buttonName) {
+                case "About" -> aboutHandler();
+                case "New game/restart" -> restartHandler();
+                case "Toggle game log" -> toggleGameLogHandler();
+                case "Exit" -> exitHandler();
+                default -> toggleGraveyardHandler();
             }
         }
     }
@@ -77,8 +69,13 @@ public class ChessMenuBar
     private void aboutHandler(){
         JOptionPane.showMessageDialog(
             this.getParent(),
-            "YetAnotherChessGame v1.0 by:\nBen Katz\nMyles David\n"
-                + "Danielle Bushrow\n\nFinal Project for CS2114 @ VT" );
+                """
+                        YetAnotherChessGame v1.0 by:
+                        Ben Katz
+                        Myles David
+                        Danielle Bushrow
+
+                        Final Project for CS2114 @ VT""");
     }
     /**
      * Takes an appropriate action if the restart button is clicked.
@@ -99,7 +96,7 @@ public class ChessMenuBar
             possibleFrame = possibleFrame.getParent();
         }
         JFrame frame = (JFrame)possibleFrame;
-        frame.setVisible( false );
+        Objects.requireNonNull(frame).setVisible( false );
         frame.dispose();
     }
     /**
@@ -117,6 +114,6 @@ public class ChessMenuBar
     private void toggleGameLogHandler(){
         ( (ChessPanel)this.getParent() ).getGameLog().setVisible(
             !( (ChessPanel)this.getParent() ).getGameLog().isVisible() );
-        ( (ChessPanel)this.getParent() ).revalidate();
+        this.getParent().revalidate();
     }
 }
