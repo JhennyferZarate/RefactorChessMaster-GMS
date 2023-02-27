@@ -38,23 +38,17 @@ public class King
      */
     @Override
     protected ArrayList<String> calculatePossibleMoves( ChessGameBoard board ){
-        ArrayList<String> northEastMoves = calculateNorthEastMoves( board, 1 );
-        ArrayList<String> northWestMoves = calculateNorthWestMoves( board, 1 );
-        ArrayList<String> southEastMoves = calculateSouthEastMoves( board, 1 );
-        ArrayList<String> southWestMoves = calculateSouthWestMoves( board, 1 );
-        ArrayList<String> northMoves = calculateNorthMoves( board, 1 );
-        ArrayList<String> southMoves = calculateSouthMoves( board, 1 );
-        ArrayList<String> eastMoves = calculateEastMoves( board, 1 );
-        ArrayList<String> westMoves = calculateWestMoves( board, 1 );
         ArrayList<String> allMoves = new ArrayList<>();
-        allMoves.addAll( northEastMoves );
-        allMoves.addAll( northWestMoves );
-        allMoves.addAll( southWestMoves );
-        allMoves.addAll( southEastMoves );
-        allMoves.addAll( northMoves );
-        allMoves.addAll( southMoves );
-        allMoves.addAll( westMoves );
-        allMoves.addAll( eastMoves );
+
+        allMoves.addAll( calculateNorthEastMoves( board, 1 ) );
+        allMoves.addAll( calculateNorthWestMoves( board, 1 ) );
+        allMoves.addAll( calculateSouthEastMoves( board, 1 ) );
+        allMoves.addAll( calculateSouthWestMoves( board, 1 ) );
+        allMoves.addAll( calculateNorthMoves( board, 1 ) );
+        allMoves.addAll( calculateSouthMoves( board, 1 ) );
+        allMoves.addAll( calculateEastMoves( board, 1 ) );
+        allMoves.addAll( calculateWestMoves( board, 1 ) );
+
         return allMoves;
     }
     /**
@@ -73,22 +67,13 @@ public class King
      * @return ImageIcon the ImageIcon representation of this piece.
      */
     @Override
-    public ImageIcon createImageByPieceType(){
-        if ( getColorOfPiece() == ChessGamePiece.WHITE ){
-            return new ImageIcon(
-                    Objects.requireNonNull(getClass().getResource("chessImages/WhiteKing.gif"))
-            );            
-        }
-        else if ( getColorOfPiece() == ChessGamePiece.BLACK ){
-            return new ImageIcon(
-                    Objects.requireNonNull(getClass().getResource("chessImages/BlackKing.gif"))
-            );            
-        }
-        else
-        {
-            return new ImageIcon(
-                    Objects.requireNonNull(getClass().getResource("chessImages/default-Unassigned.gif"))
-            );            
-        }
+    public ImageIcon createImageByPieceType() {
+
+        String fileName = getColorOfPiece() == ChessGamePiece.WHITE ? "WhiteKing.gif" :
+                getColorOfPiece() == ChessGamePiece.BLACK ? "BlackKing.gif" :
+                        "default-Unassigned.gif";
+
+        return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
+
     }
 }

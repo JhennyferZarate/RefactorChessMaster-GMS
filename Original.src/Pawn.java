@@ -96,8 +96,8 @@ public class Pawn
         }
 
         // check for enemy capture points
-        int[] captureRows = ( getColorOfPiece() == ChessGamePiece.WHITE ) ?
-                new int[] {-1, -1} : new int[] {1, 1};
+        int[] captureRows = ( getColorOfPiece() == ChessGamePiece.WHITE ) ? new int[] {-1, -1} :
+                new int[] {1, 1};
         int[] captureColumns = new int[] {-1, 1};
 
         for( int i = 0; i < captureRows.length; i++ ){
@@ -120,16 +120,14 @@ public class Pawn
      * @return ImageIcon the ImageIcon representation of this piece.
      */
     @Override
-    public ImageIcon createImageByPieceType(){
+    public ImageIcon createImageByPieceType() {
 
-        String fileName = "";
+        String fileName = getColorOfPiece() == ChessGamePiece.WHITE ? "WhitePawn.gif" :
+                getColorOfPiece() == ChessGamePiece.BLACK ? "BlackPawn.gif" :
+                        "default-Unassigned.gif";
 
-        if (getColorOfPiece() == ChessGamePiece.WHITE) {
-            fileName = "WhitePawn.gif";
-        } else if (getColorOfPiece() == ChessGamePiece.BLACK) {
-            fileName = "BlackPawn.gif";
-        }
         return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
 
     }
+
 }
