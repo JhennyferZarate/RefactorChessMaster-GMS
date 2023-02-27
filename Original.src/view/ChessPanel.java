@@ -34,13 +34,13 @@ public class ChessPanel
         gameLog = new ChessGameLog();
         playerOneGraveyard = new ChessGraveyard( "Player 1's graveyard" );
         playerTwoGraveyard = new ChessGraveyard( "Player 2's graveyard" );
-        this.add(menuBar, BorderLayout.NORTH );
+        this.add( menuBar, BorderLayout.NORTH );
         this.add( gameBoard, BorderLayout.CENTER );
         this.add( gameLog, BorderLayout.SOUTH );
         this.add( playerOneGraveyard, BorderLayout.WEST );
         this.add( playerTwoGraveyard, BorderLayout.EAST );
         this.setPreferredSize( new Dimension( 800, 600 ) );
-        gameEngine = new ChessGameEngine( gameBoard ); // start the game
+        gameEngine = ChessGameEngine.getInstance( gameBoard ); // start the game
     }
     // ----------------------------------------------------------
     /**
@@ -89,4 +89,6 @@ public class ChessPanel
             return null;
         }
     }
+
+
 }

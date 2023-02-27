@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
  * @version 2010.11.17
  */
 public class ChessGameEngine{
+    private static ChessGameEngine instance = null;
     private ChessGamePiece currentPiece;
     private boolean        firstClick;
     private int            currentPlayer;
@@ -45,6 +46,16 @@ public class ChessGameEngine{
             "A new chess "
                 + "game has been started. Player 1 (white) will play "
                 + "against Player 2 (black). BEGIN!" );
+    }
+    // ----------------------------------------------------------
+    /**
+     * Ensure a single instance at all times during program execution..
+     */
+    public static ChessGameEngine getInstance(ChessGameBoard gameBoard) {
+        if (instance == null) {
+            instance = new ChessGameEngine(gameBoard);
+        }
+        return instance;
     }
     // ----------------------------------------------------------
     /**
