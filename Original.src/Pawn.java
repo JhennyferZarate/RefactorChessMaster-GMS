@@ -84,24 +84,14 @@ public class Pawn
         int maxIter = notMoved ? 2 : 1;
 
         // check for normal moves
-        for ( int i = 0 ; i < maxIter; i++ ){ // only loop while we have open slots and have not passed our
+        for ( int i = 0 ; i < maxIter && isOnScreen(currRow, pieceColumn); i++ ){ // only loop while we have open slots and have not passed our
 
-            if (!isOnScreen(currRow, pieceColumn)) {
+            BoardSquare cell = board.getCell(currRow, pieceColumn);
+            if (cell.getPieceOnSquare() != null) {
                 break;
-            } else {
-
-                BoardSquare cell =  board.getCell(currRow, pieceColumn);
-                if (cell.getPieceOnSquare() != null) {
-                    continue;
-                }
-                moves.add( currRow + "," + pieceColumn );
-
-                currRow =
-                        ( getColorOfPiece() == ChessGamePiece.WHITE )
-                                ? ( currRow - 1 )
-                                : ( currRow + 1 );
-
             }
+            moves.add(currRow + "," + pieceColumn);
+            currRow = getColorOfPiece() == ChessGamePiece.WHITE ? currRow - 1 : currRow + 1;
 
         }
 
@@ -115,7 +105,7 @@ public class Pawn
             int captureRow = pieceRow + captureRows[i];
             int captureColumn = pieceColumn + captureColumns[i];
 
-            if( isOnScreen(captureRow, captureColumn) && isEnemy( board, captureRow, captureColumn ) ){
+            if (isOnScreen(captureRow, captureColumn) && isEnemy(board, captureRow, captureColumn)) {
                 moves.add(captureRow + "," + captureColumn);
             }
 
@@ -131,21 +121,15 @@ public class Pawn
      */
     @Override
     public ImageIcon createImageByPieceType(){
-        if ( getColorOfPiece() == ChessGamePiece.WHITE ){
-            return new ImageIcon(
-                    Objects.requireNonNull(getClass().getResource("chessImages/WhitePawn.gif"))
-            );
+
+        String fileName = "";
+
+        if (getColorOfPiece() == ChessGamePiece.WHITE) {
+            fileName = "WhitePawn.gif";
+        } else if (getColorOfPiece() == ChessGamePiece.BLACK) {
+            fileName = "BlackPawn.gif";
         }
-        else if ( getColorOfPiece() == ChessGamePiece.BLACK ){
-            return new ImageIcon(
-                    Objects.requireNonNull(getClass().getResource("chessImages/BlackPawn.gif"))
-            );            
-        }
-        else
-        {
-            return new ImageIcon(
-                    Objects.requireNonNull(getClass().getResource("chessImages/default-Unassigned.gif"))
-            );           
-        }
+        return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
+
     }
 }
