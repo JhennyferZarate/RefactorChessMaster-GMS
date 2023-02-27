@@ -86,22 +86,23 @@ public class Pawn
         // check for normal moves
         for ( int i = 0 ; i < maxIter; i++ ){ // only loop while we have open slots and have not passed our
 
-            if ( !isOnScreen( currRow, pieceColumn )){
+            if (!isOnScreen(currRow, pieceColumn)) {
                 break;
+            } else {
+
+                BoardSquare cell =  board.getCell(currRow, pieceColumn);
+                if (cell.getPieceOnSquare() != null) {
+                    continue;
+                }
+                moves.add( currRow + "," + pieceColumn );
+
+                currRow =
+                        ( getColorOfPiece() == ChessGamePiece.WHITE )
+                                ? ( currRow - 1 )
+                                : ( currRow + 1 );
+
             }
 
-            BoardSquare cell =  board.getCell(currRow, pieceColumn);
-
-            if( cell.getPieceOnSquare() != null ){
-                break;
-            }
-
-            moves.add( currRow + "," + pieceColumn );
-
-            currRow =
-                    ( getColorOfPiece() == ChessGamePiece.WHITE )
-                            ? ( currRow - 1 )
-                            : ( currRow + 1 );
         }
 
         // check for enemy capture points
