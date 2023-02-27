@@ -712,7 +712,7 @@ public abstract class ChessGamePiece{
      */
     @Override
     public String toString(){
-        return this.getClass().toString().substring( 6 ) + " @ (" + pieceRow
+        return this.getClass().toString().substring( 19 ) + " @ (" + pieceRow
             + ", " + pieceColumn + ")";
     }
 }
