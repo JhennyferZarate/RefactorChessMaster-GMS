@@ -99,9 +99,14 @@ public class Knight
     @Override
     public ImageIcon createImageByPieceType() {
 
-        String fileName = getColorOfPiece() == ChessGamePiece.WHITE ? "WhiteKnight.gif" :
-                getColorOfPiece() == ChessGamePiece.BLACK ? "BlackKnight.gif" :
-                        "default-Unassigned.gif";
+        String fileName;
+        if (getColorOfPiece() == ChessGamePiece.WHITE) {
+            fileName = "WhiteKnight.gif";
+        } else if (getColorOfPiece() == ChessGamePiece.BLACK) {
+            fileName = "BlackKnight.gif";
+        } else {
+            fileName = "default-Unassigned.gif";
+        }
 
         return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
 

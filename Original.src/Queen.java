@@ -58,9 +58,14 @@ public class Queen
     @Override
     public ImageIcon createImageByPieceType() {
 
-        String fileName = getColorOfPiece() == ChessGamePiece.WHITE ? "WhiteQueen.gif" :
-                getColorOfPiece() == ChessGamePiece.BLACK ? "BlackQueen.gif" :
-                        "default-Unassigned.gif";
+        String fileName;
+        if (getColorOfPiece() == ChessGamePiece.WHITE) {
+            fileName = "WhiteQueen.gif";
+        } else if (getColorOfPiece() == ChessGamePiece.BLACK) {
+            fileName = "BlackQueen.gif";
+        } else {
+            fileName = "default-Unassigned.gif";
+        }
 
         return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
 

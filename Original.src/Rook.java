@@ -54,9 +54,14 @@ public class Rook
     @Override
     public ImageIcon createImageByPieceType() {
 
-        String fileName = getColorOfPiece() == ChessGamePiece.WHITE ? "WhiteRook.gif" :
-                getColorOfPiece() == ChessGamePiece.BLACK ? "BlackRook.gif" :
-                        "default-Unassigned.gif";
+        String fileName;
+        if (getColorOfPiece() == ChessGamePiece.WHITE) {
+            fileName = "WhiteRook.gif";
+        } else if (getColorOfPiece() == ChessGamePiece.BLACK) {
+            fileName = "BlackRook.gif";
+        } else {
+            fileName = "default-Unassigned.gif";
+        }
 
         return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
 
