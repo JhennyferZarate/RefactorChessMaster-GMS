@@ -1,6 +1,5 @@
 package model.board;
 
-import model.board.BoardSquare;
 import model.game.ChessGamePiece;
 import model.pieces.*;
 import view.ChessPanel;
