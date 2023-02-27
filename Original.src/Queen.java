@@ -1,7 +1,6 @@
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Objects;
-// import java.awt.Color;
 // -------------------------------------------------------------------------
 /**
  * Represents a Queen game piece.

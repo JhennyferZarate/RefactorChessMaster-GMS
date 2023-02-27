@@ -148,7 +148,6 @@ public class ChessGameBoard extends JPanel{
             }
         }
         repaint();
-        //revalidate();
         // only the combination of these two calls work...*shrug*
     }
     /**
@@ -176,23 +175,14 @@ public class ChessGameBoard extends JPanel{
             return new Pawn(this, i, j, ChessGamePiece.WHITE);
         } else if (i == 0 || i == 7) {
             int colNum = (i == 0) ? ChessGamePiece.BLACK : ChessGamePiece.WHITE;
-            switch (j) {
-                case 0:
-                case 7:
-                    return new Rook(this, i, j, colNum);
-                case 1:
-                case 6:
-                    return new Knight(this, i, j, colNum);
-                case 2:
-                case 5:
-                    return new Bishop(this, i, j, colNum);
-                case 3:
-                    return new King(this, i, j, colNum);
-                case 4:
-                    return new Queen(this, i, j, colNum);
-                default:
-                    return null;
-            }
+            return switch (j) {
+                case 0, 7 -> new Rook(this, i, j, colNum);
+                case 1, 6 -> new Knight(this, i, j, colNum);
+                case 2, 5 -> new Bishop(this, i, j, colNum);
+                case 3 -> new King(this, i, j, colNum);
+                case 4 -> new Queen(this, i, j, colNum);
+                default -> null;
+            };
         } else {
             return null;
         }

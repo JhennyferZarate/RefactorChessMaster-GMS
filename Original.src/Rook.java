@@ -12,7 +12,6 @@ import java.util.Objects;
  */
 public class Rook
     extends ChessGamePiece{
-    // private ArrayList<String> possibleMoves;
     // ----------------------------------------------------------
     /**
      * Create a new Rook object.
