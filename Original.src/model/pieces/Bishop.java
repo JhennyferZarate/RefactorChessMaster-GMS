@@ -1,29 +1,33 @@
+package model.pieces;
+
+import model.board.ChessGameBoard;
+import model.game.ChessGamePiece;
 import java.util.ArrayList;
 import java.util.Objects;
 import javax.swing.ImageIcon;
 // -------------------------------------------------------------------------
 /**
- * Class to represent the Bishop piece.
+ * Class to represent the model.pieces.Bishop piece.
  * 
  * @author Ben Katz (bakatz)
  * @author Myles David II (davidmm2)
  * @author Danielle Bushrow (dbushrow)
  * @version 2010.11.17
  */
-public class Bishop extends ChessGamePiece{
+public class Bishop extends ChessGamePiece {
     /**
-     * Creates a new Bishop object.
+     * Creates a new model.pieces.Bishop object.
      * 
      * @param board
      *            board the board to create the bishop on
      * @param row
-     *            row location of the Bishop
+     *            row location of the model.pieces.Bishop
      * @param col
-     *            col location of the Bishop
+     *            col location of the model.pieces.Bishop
      * @param color
      *            either GamePiece.WHITE, BLACK, or UNASSIGNED
      */
-    public Bishop( ChessGameBoard board, int row, int col, int color ){
+    public Bishop(ChessGameBoard board, int row, int col, int color ){
         super( board, row, col, color );
     }
     /**
@@ -53,21 +57,19 @@ public class Bishop extends ChessGamePiece{
      * @return ImageIcon the ImageIcon representation of this piece.
      */
     @Override
-    public ImageIcon createImageByPieceType(){
-        if ( getColorOfPiece() == ChessGamePiece.WHITE ){
-            return new ImageIcon(
-                    Objects.requireNonNull(getClass().getResource("chessImages/WhiteBishop.gif"))
-            );            
+    public ImageIcon createImageByPieceType() {
+
+        String fileName;
+        if (getColorOfPiece() == ChessGamePiece.WHITE) {
+            fileName = "WhiteBishop.gif";
+        } else if (getColorOfPiece() == ChessGamePiece.BLACK) {
+            fileName = "BlackBishop.gif";
+        } else {
+            fileName = "default-Unassigned.gif";
         }
-        else if ( getColorOfPiece() == ChessGamePiece.BLACK ){
-            return new ImageIcon(
-                    Objects.requireNonNull(getClass().getResource("chessImages/BlackBishop.gif"))
-            );
-        }
-        else{
-            return new ImageIcon(
-                    Objects.requireNonNull(getClass().getResource("chessImages/BlackBishop.gif"))
-            );
-        }
+
+        return new ImageIcon(Objects.requireNonNull(getClass().getResource("../../ChessImages/" + fileName)));
+
     }
+
 }

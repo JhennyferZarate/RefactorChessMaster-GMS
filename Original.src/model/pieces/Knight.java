@@ -1,9 +1,13 @@
+package model.pieces;
+
+import model.board.ChessGameBoard;
+import model.game.ChessGamePiece;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Objects;
 // -------------------------------------------------------------------------
 /**
- * Represents a Knight game piece.
+ * Represents a model.pieces.Knight game piece.
  *
  * @author Ben Katz (bakatz)
  * @author Myles David II (davidmm2)
@@ -11,9 +15,9 @@ import java.util.Objects;
  * @version 2010.11.17
  */
 public class Knight
-    extends ChessGamePiece{
+    extends ChessGamePiece {
     /**
-     * Knight constructor for gamePiece
+     * model.pieces.Knight constructor for gamePiece
      *
      * @param row
      *            the row to create the knight on
@@ -24,7 +28,7 @@ public class Knight
      * @param color
      *            either GamePiece.WHITE, BLACK, or UNASSIGNED
      */
-    public Knight( ChessGameBoard board, int row, int col, int color ){
+    public Knight(ChessGameBoard board, int row, int col, int color ){
         super( board, row, col, color );
     }
     /**
@@ -76,7 +80,7 @@ public class Knight
         return moves;
     }
     /**
-     * Calculates the possible moves for this Knight.
+     * Calculates the possible moves for this model.pieces.Knight.
      *
      * @param board
      *            the game board to check
@@ -108,7 +112,7 @@ public class Knight
             fileName = "default-Unassigned.gif";
         }
 
-        return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
+        return new ImageIcon(Objects.requireNonNull(getClass().getResource("../../ChessImages/" + fileName)));
 
     }
 }

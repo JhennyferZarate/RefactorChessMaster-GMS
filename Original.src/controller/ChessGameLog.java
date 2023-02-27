@@ -1,3 +1,5 @@
+package controller;
+
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import java.util.Date;
@@ -16,7 +18,7 @@ public class ChessGameLog
     private final JTextArea textArea;
     // ----------------------------------------------------------
     /**
-     * Create a new ChessGameLog object.
+     * Create a new controller.ChessGameLog object.
      */
     public ChessGameLog(){
         super(

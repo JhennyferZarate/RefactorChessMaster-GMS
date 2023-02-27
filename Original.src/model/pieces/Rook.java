@@ -1,35 +1,39 @@
+package model.pieces;
+
+import model.board.ChessGameBoard;
+import model.game.ChessGamePiece;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Objects;
 // -------------------------------------------------------------------------
 /**
- * Represents a Queen game piece.
+ * Represents a model.pieces.Rook game piece.
  *
  * @author Ben Katz (bakatz)
  * @author Myles David II (davidmm2)
  * @author Danielle Bushrow (dbushrow)
  * @version 2010.11.17
  */
-public class Queen
-    extends ChessGamePiece{
+public class Rook
+    extends ChessGamePiece {
     // ----------------------------------------------------------
     /**
-     * Create a new Queen object.
+     * Create a new model.pieces.Rook object.
      *
      * @param board
-     *            the board the queen is on
+     *            the board to create the rook on
      * @param row
-     *            the row location of the queen
+     *            the row to create the rook on
      * @param col
-     *            the column location of the queen
+     *            the column to create the rook on
      * @param color
      *            either GamePiece.WHITE, BLACK, or UNASSIGNED
      */
-    public Queen( ChessGameBoard board, int row, int col, int color ){
+    public Rook(ChessGameBoard board, int row, int col, int color ){
         super( board, row, col, color );
     }
     /**
-     * Calculates the possible moves for this Queen.
+     * Calculates the possible moves for this model.pieces.Rook.
      * @param board the board to check on
      * @return ArrayList<String> the list of moves
      */
@@ -38,14 +42,10 @@ public class Queen
 
         ArrayList<String> allMoves = new ArrayList<>();
 
-        allMoves.addAll( calculateNorthEastMoves( board, 8 ) );
-        allMoves.addAll( calculateNorthWestMoves( board, 8 ) );
-        allMoves.addAll( calculateSouthEastMoves( board, 8 ) );
-        allMoves.addAll( calculateSouthWestMoves( board, 8 ) );
         allMoves.addAll( calculateNorthMoves( board, 8 ) );
         allMoves.addAll( calculateSouthMoves( board, 8 ) );
-        allMoves.addAll( calculateEastMoves( board, 8 ) );
         allMoves.addAll( calculateWestMoves( board, 8 ) );
+        allMoves.addAll( calculateEastMoves( board, 8 ) );
 
         return allMoves;
     }
@@ -59,14 +59,16 @@ public class Queen
 
         String fileName;
         if (getColorOfPiece() == ChessGamePiece.WHITE) {
-            fileName = "WhiteQueen.gif";
+            fileName = "WhiteRook.gif";
         } else if (getColorOfPiece() == ChessGamePiece.BLACK) {
-            fileName = "BlackQueen.gif";
+            fileName = "BlackRook.gif";
         } else {
             fileName = "default-Unassigned.gif";
         }
 
-        return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
+        return new ImageIcon(Objects.requireNonNull(getClass().getResource("../../ChessImages/" + fileName)));
 
     }
+
+
 }

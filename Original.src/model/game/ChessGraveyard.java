@@ -1,3 +1,7 @@
+package model.game;
+
+import model.game.ChessGamePiece;
+
 import java.awt.GridLayout;
 import javax.swing.*;
 // -------------------------------------------------------------------------
@@ -14,7 +18,7 @@ public class ChessGraveyard
     private final String title;
     // ----------------------------------------------------------
     /**
-     * Create a new ChessGraveyard object.
+     * Create a new model.game.ChessGraveyard object.
      *
      * @param title
      *            the title of the graveyard

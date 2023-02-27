@@ -1,3 +1,7 @@
+package view;
+
+import view.ChessPanel;
+
 import javax.swing.*;
 // -------------------------------------------------------------------------
 /**

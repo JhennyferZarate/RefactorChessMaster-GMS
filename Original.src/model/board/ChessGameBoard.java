@@ -1,3 +1,10 @@
+package model.board;
+
+import model.board.BoardSquare;
+import model.game.ChessGamePiece;
+import model.pieces.*;
+import view.ChessPanel;
+
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,7 +28,7 @@ public class ChessGameBoard extends JPanel{
     /**
      * Returns the entire board.
      *
-     * @return BoardSquare[][] the chess board
+     * @return model.board.BoardSquare[][] the chess board
      */
     public BoardSquare[][] getCells(){
         return chessCells;
@@ -39,10 +46,10 @@ public class ChessGameBoard extends JPanel{
     }
     // ----------------------------------------------------------
     /**
-     * Gets the BoardSquare at row 'row' and column 'col'.
+     * Gets the model.board.BoardSquare at row 'row' and column 'col'.
      * @param row the row to look at
      * @param col the column to look at
-     * @return BoardSquare the square found, or null if it does not exist
+     * @return model.board.BoardSquare the square found, or null if it does not exist
      */
     public BoardSquare getCell( int row, int col ){
         if ( validateCoordinates( row, col ) ){
@@ -107,7 +114,7 @@ public class ChessGameBoard extends JPanel{
     }
     // ----------------------------------------------------------
     /**
-     * Create a new ChessGameBoard object.
+     * Create a new model.board.ChessGameBoard object.
      */
     public ChessGameBoard(){
         this.setLayout( new GridLayout( 8, 8, 1, 1 ) );
@@ -126,7 +133,7 @@ public class ChessGameBoard extends JPanel{
     public void resetBoard ( boolean addAfterReset ){
         chessCells = new BoardSquare[8][8];
         this.removeAll();
-        if ( getParent() instanceof ChessPanel ){
+        if ( getParent() instanceof ChessPanel){
             ( (ChessPanel)getParent() ).getGraveyard( 1 ).clearGraveyard();
             ( (ChessPanel)getParent() ).getGraveyard( 2 ).clearGraveyard();
             ( (ChessPanel)getParent() ).getGameLog().clearLog();
@@ -151,7 +158,7 @@ public class ChessGameBoard extends JPanel{
         // only the combination of these two calls work...*shrug*
     }
     /**
-     * (Re)initializes this ChessGameBoard to its default layout with all 32
+     * (Re)initializes this model.board.ChessGameBoard to its default layout with all 32
      * pieces added.
      */
     public void initializeBoard() {
@@ -237,7 +244,7 @@ public class ChessGameBoard extends JPanel{
          */
         public void mouseClicked( MouseEvent e ){
             if ( e.getButton() == MouseEvent.BUTTON1 &&
-                getParent() instanceof ChessPanel ){
+                getParent() instanceof ChessPanel){
                 ( (ChessPanel)getParent() ).getGameEngine()
                     .determineActionFromSquareClick( e );
             }

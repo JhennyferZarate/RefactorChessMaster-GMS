@@ -1,3 +1,7 @@
+package view;
+
+import view.ChessPanel;
+
 import java.awt.Component;
 import java.awt.event.*;
 import java.util.Objects;
@@ -15,7 +19,7 @@ public class ChessMenuBar
     extends JMenuBar{
     // ----------------------------------------------------------
     /**
-     * Create a new ChessMenuBar object.
+     * Create a new view.ChessMenuBar object.
      */
     public ChessMenuBar(){
         String[] menuCategories = { "File", "Options", "Help" };

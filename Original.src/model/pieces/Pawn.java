@@ -1,9 +1,14 @@
+package model.pieces;
+
+import model.board.BoardSquare;
+import model.board.ChessGameBoard;
+import model.game.ChessGamePiece;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Objects;
 // -------------------------------------------------------------------------
 /**
- * Represents a Pawn game piece. Unique in that it can move two locations on its
+ * Represents a model.pieces.Pawn game piece. Unique in that it can move two locations on its
  * first turn and therefore requires a new 'notMoved' variable to keep track of
  * its turns.
  *
@@ -13,11 +18,11 @@ import java.util.Objects;
  * @version 2010.11.17
  */
 public class Pawn
-    extends ChessGamePiece{
+    extends ChessGamePiece {
     private boolean notMoved;
     // ----------------------------------------------------------
     /**
-     * Create a new Pawn object.
+     * Create a new model.pieces.Pawn object.
      *
      * @param board
      *            the board to create the pawn on
@@ -28,7 +33,7 @@ public class Pawn
      * @param color
      *            either GamePiece.WHITE, BLACK, or UNASSIGNED
      */
-    public Pawn( ChessGameBoard board, int row, int col, int color ){
+    public Pawn(ChessGameBoard board, int row, int col, int color ){
         super( board, row, col, color, true );
         notMoved = true;
         possibleMoves = calculatePossibleMoves( board );
@@ -131,7 +136,7 @@ public class Pawn
             fileName = "default-Unassigned.gif";
         }
 
-        return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
+        return new ImageIcon(Objects.requireNonNull(getClass().getResource("../../ChessImages/" + fileName)));
 
     }
 

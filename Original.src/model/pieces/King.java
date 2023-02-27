@@ -1,9 +1,13 @@
+package model.pieces;
+
+import model.board.ChessGameBoard;
+import model.game.ChessGamePiece;
 import javax.swing.ImageIcon;
 import java.util.ArrayList;
 import java.util.Objects;
 // -------------------------------------------------------------------------
 /**
- * Represents a King game piece.
+ * Represents a model.pieces.King game piece.
  *
  * @author Ben Katz (bakatz)
  * @author Myles David II (davidmm2)
@@ -11,10 +15,10 @@ import java.util.Objects;
  * @version 2010.11.17
  */
 public class King
-    extends ChessGamePiece{
+    extends ChessGamePiece {
     // ----------------------------------------------------------
     /**
-     * Create a new King object.
+     * Create a new model.pieces.King object.
      *
      * @param board
      *            the board to create the king on
@@ -25,7 +29,7 @@ public class King
      * @param color
      *            either GamePiece.WHITE, BLACK, or UNASSIGNED
      */
-    public King( ChessGameBoard board, int row, int col, int color ){
+    public King(ChessGameBoard board, int row, int col, int color ){
         super( board, row, col, color, false );
     }
     /**
@@ -52,7 +56,7 @@ public class King
         return allMoves;
     }
     /**
-     * Determines if this King is checked.
+     * Determines if this model.pieces.King is checked.
      *
      * @param board
      *            the board to check on
@@ -78,7 +82,7 @@ public class King
             fileName = "default-Unassigned.gif";
         }
 
-        return new ImageIcon(Objects.requireNonNull(getClass().getResource("chessImages/" + fileName)));
+        return new ImageIcon(Objects.requireNonNull(getClass().getResource("../../ChessImages/" + fileName)));
 
     }
 }

@@ -1,10 +1,15 @@
+package model.game;
+
+import model.board.ChessGameBoard;
+import view.ChessPanel;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 // -------------------------------------------------------------------------
 /**
  * Abstract class that is used to represent a game piece on the chess board.
- * Classes to extend this piece are Rook, Bishop, Knight, Queen, King and Pawn.
+ * Classes to extend this piece are model.pieces.Rook, model.pieces.Bishop, model.pieces.Knight, model.pieces.Queen, model.pieces.King and model.pieces.Pawn.
  * Also contains a large number of methods to determine information about cells
  * around this piece.
  *
@@ -33,11 +38,11 @@ public abstract class ChessGamePiece{
     /**
      * Represents a black piece as an int
      */
-    static final int            BLACK      = 0;
+    public static final int            BLACK      = 0;
     /**
      * Represents a white piece as an int
      */
-    static final int            WHITE      = 1;
+    public static final int            WHITE      = 1;
     /**
      * Represents a piece that has not been assigned a color
      */
@@ -536,7 +541,7 @@ public abstract class ChessGamePiece{
     }
     /**
      * Checks if the move that is about to be made would cause the current
-     * player's King to be put in check (which is an illegal move).
+     * player's model.pieces.King to be put in check (which is an illegal move).
      *
      * @param board
      *            the game board to check on
@@ -666,7 +671,7 @@ public abstract class ChessGamePiece{
     // ----------------------------------------------------------
     /**
      * Determines if the row and column contains an enemy piece. This is defined
-     * in GamePiece and not ChessGameBoard because different pieces have
+     * in GamePiece and not model.board.ChessGameBoard because different pieces have
      * different enemies depending on their colors.
      *
      * @param row

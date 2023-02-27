@@ -1,3 +1,10 @@
+package model.game;
+
+import model.board.BoardSquare;
+import model.board.ChessGameBoard;
+import model.pieces.King;
+import view.ChessPanel;
+
 import java.util.ArrayList;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -17,15 +24,15 @@ public class ChessGameEngine{
     private boolean        firstClick;
     private int            currentPlayer;
     private final ChessGameBoard board;
-    private King           king1;
-    private King           king2;
+    private King king1;
+    private King king2;
     // ----------------------------------------------------------
     /**
-     * Create a new ChessGameEngine object. Accepts a fully-created
-     * ChessGameBoard. (i.e. all components rendered)
+     * Create a new model.game.ChessGameEngine object. Accepts a fully-created
+     * model.board.ChessGameBoard. (i.e. all components rendered)
      *
      * @param board
-     *            the reference ChessGameBoard
+     *            the reference model.board.ChessGameBoard
      */
     public ChessGameEngine( ChessGameBoard board ){
         firstClick = true;
@@ -122,7 +129,7 @@ public class ChessGameEngine{
         }
     }
     /**
-     * Determines if the requested King is in check.
+     * Determines if the requested model.pieces.King is in check.
      *
      * @param checkCurrent
      *            if true, will check if the current king is in check if false,

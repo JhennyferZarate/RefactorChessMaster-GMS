@@ -1,3 +1,10 @@
+package view;
+
+import controller.ChessGameLog;
+import model.board.ChessGameBoard;
+import model.game.ChessGameEngine;
+import model.game.ChessGraveyard;
+
 import java.awt.*;
 import javax.swing.*;
 // -------------------------------------------------------------------------
@@ -11,14 +18,14 @@ import javax.swing.*;
  */
 public class ChessPanel
     extends JPanel{
-    private final ChessGameBoard  gameBoard;
-    private final ChessGameLog    gameLog;
-    private final ChessGraveyard  playerOneGraveyard;
+    private final ChessGameBoard gameBoard;
+    private final ChessGameLog gameLog;
+    private final ChessGraveyard playerOneGraveyard;
     private final ChessGraveyard  playerTwoGraveyard;
     private final ChessGameEngine gameEngine;
     // ----------------------------------------------------------
     /**
-     * Create a new ChessPanel object.
+     * Create a new view.ChessPanel object.
      */
     public ChessPanel(){
         this.setLayout( new BorderLayout() );
@@ -39,7 +46,7 @@ public class ChessPanel
     /**
      * Gets the logger object for use in other classes.
      * 
-     * @return ChessGameLog the ChessGameLog object
+     * @return controller.ChessGameLog the controller.ChessGameLog object
      */
     public ChessGameLog getGameLog(){
         return gameLog;
@@ -48,7 +55,7 @@ public class ChessPanel
     /**
      * Gets the board object for use in other classes.
      * 
-     * @return ChessGameBoard the ChessGameBoard object
+     * @return model.board.ChessGameBoard the model.board.ChessGameBoard object
      */
     public ChessGameBoard getGameBoard(){
         return gameBoard;
@@ -57,7 +64,7 @@ public class ChessPanel
     /**
      * Gets the game engine object for use in other classes
      * 
-     * @return ChessGameEngine the ChessGameEngine object
+     * @return model.game.ChessGameEngine the model.game.ChessGameEngine object
      */
     public ChessGameEngine getGameEngine(){
         return gameEngine;
@@ -68,7 +75,7 @@ public class ChessPanel
      * 
      * @param whichPlayer
      *            the number of the player (1 or 2)
-     * @return ChessGraveyard the graveyard requested
+     * @return model.game.ChessGraveyard the graveyard requested
      */
     public ChessGraveyard getGraveyard( int whichPlayer ){
         if ( whichPlayer == 1 ){
