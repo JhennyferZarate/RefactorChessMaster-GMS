@@ -22,7 +22,7 @@ public class ChessPanel
     private final ChessGameLog gameLog;
     private final ChessGraveyard playerOneGraveyard;
     private final ChessGraveyard  playerTwoGraveyard;
-    private final ChessGameEngine gameEngine;
+    private transient final ChessGameEngine gameEngine;
     // ----------------------------------------------------------
     /**
      * Create a new view.ChessPanel object.

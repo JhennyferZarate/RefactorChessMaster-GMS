@@ -22,7 +22,7 @@ import java.awt.GridLayout;
  */
 public class ChessGameBoard extends JPanel{
     private BoardSquare[][] chessCells;
-    private final BoardListener   listener;
+    private transient final BoardListener   listener;
     // ----------------------------------------------------------
     /**
      * Returns the entire board.

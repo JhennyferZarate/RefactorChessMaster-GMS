@@ -17,7 +17,7 @@ public class BoardSquare
     extends JPanel{
     private final int            row;
     private final int            col;
-    private ChessGamePiece piece;
+    private transient ChessGamePiece piece;
     private JLabel         imageLabel;
     // ----------------------------------------------------------
     /**
