@@ -140,15 +140,11 @@ public abstract class ChessGamePiece{
             return moves;
         }
         for (int i = pieceRow + 1; i < 8 && moves.size() < numMoves; i++)
-            if ((board.getCell(i, pieceColumn).getPieceOnSquare()
-                    == null || isEnemy(board, i, pieceColumn))) {
+            if ((board.getCell(i, pieceColumn).getPieceOnSquare() != null && !isEnemy(board, i, pieceColumn))) break;
+            else {
                 moves.add(i + "," + pieceColumn);
-                if (isEnemy(board, i, pieceColumn)) {
-                    break;
-                }
-            } else {
-                break;
-            }
+                if (isEnemy(board, i, pieceColumn)) break;
+        }
 
         return moves;
     }
