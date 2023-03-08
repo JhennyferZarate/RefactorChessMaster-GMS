@@ -14,7 +14,8 @@ import javax.swing.JPanel;
  * @version 2010.11.17
  */
 public class BoardSquare
-    extends JPanel{
+    extends JPanel
+    implements SquareObserver{
     private final int            row;
     private final int            col;
     private transient ChessGamePiece piece;
@@ -35,6 +36,9 @@ public class BoardSquare
         this.row = row;
         this.col = col;
         this.piece = piece;
+        if (this.piece != null) {
+            this.piece.addObserver(this);
+        }
         updateImage();
     }
     /**
@@ -98,4 +102,14 @@ public class BoardSquare
         piece = null;
         removeAll();
     }
+    /**
+    * Updates the state of a BoardSquare in response to a change in the observed ChessGamePiece object
+    */
+    @Override
+    public void updateSquare(ChessGamePiece piece) {
+        if (this.piece == piece) {
+            updateImage();
+        }
+    }
+
 }

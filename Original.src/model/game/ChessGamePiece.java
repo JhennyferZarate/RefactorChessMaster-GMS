@@ -1,10 +1,13 @@
 package model.game;
 
+import model.board.BoardSquare;
 import model.board.ChessGameBoard;
+import model.board.SquareObserver;
 import view.ChessPanel;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 // -------------------------------------------------------------------------
 /**
@@ -22,6 +25,22 @@ public abstract class ChessGamePiece{
     private final boolean             skipMoveGeneration;
     private final int                 pieceColor;
     private final ImageIcon           pieceImage;
+    private final List<SquareObserver> observers = new ArrayList<>();
+
+    public void addObserver(SquareObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(SquareObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void updateObservers() {
+        for (SquareObserver observer : observers) {
+            observer.updateSquare(this);
+        }
+    }
+
     /**
      * The list of possible moves for this piece. Updated when actions involving
      * this piece occur. (created, moved, selected, etc)
